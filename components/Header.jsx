@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import React from 'react';
+import User from './User';
 
 const Header = () => {
   return (
@@ -14,7 +15,7 @@ const Header = () => {
         <Link href={'/'}>
           <h1 className='font-bebas text-5xl'>NAPOLEÓN</h1>
         </Link>
-        <button className='hidden sm:inline-block'>Entradas</button>
+        <User />
       </div>
       <div className='flex flex-row py-4 px-8 gap-4 justify-center items-center border-b border-solid border-b-grey-500'>
         <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} className='uppercase'>
