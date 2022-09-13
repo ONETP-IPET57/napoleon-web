@@ -6,7 +6,7 @@ const Container = ({ children }) => {
   return (
     <div className='flex flex-col'>
       <Header />
-      {children}
+      <div className='py-8'>{children}</div>
       <Footer />
     </div>
   );

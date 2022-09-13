@@ -7,6 +7,9 @@ module.exports = {
         bebas: ['bebas-neue', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      aspectRatio: {
+        cine: '21 / 9',
+      },
     },
   },
   plugins: [],
