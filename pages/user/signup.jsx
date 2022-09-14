@@ -5,18 +5,25 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { useRecoilState } from 'recoil';
-import { userState } from '../../atoms/userAtoms';
+import { accessTokenState, userState } from '../../atoms/userAtoms';
+import useUser from '../../hooks/useUser';
+import useValidation from '../../hooks/useValidation';
 
 const Signup = () => {
   const router = useRouter();
+  useUser({ redirectTo: '/user', redirectIfFound: true });
+
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [warning, setWarning] = useState(null);
-  const [user, setUser] = useRecoilState(userState);
+
+  const usernameValid = useValidation(username, /^[a-zA-Z0-9\_\-]{4,16}$/);
+  const passwordValid = useValidation(password, /^.{4,12}$/);
+  const emailValid = useValidation(email, /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/);
 
   const handlerSubmit = useCallback(() => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    if (!usernameValid && !passwordValid && !emailValid) return;
 
     fetch('/api/signup', {
       method: 'POST',
@@ -27,12 +34,12 @@ const Signup = () => {
       body: JSON.stringify({
         'username': username,
         'password': password,
+        'email': email,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setUser(data);
         router.push('/user');
       })
       .catch((err) => {
@@ -42,7 +49,31 @@ const Signup = () => {
           </div>
         );
       });
-  }, [username, password, router]);
+  }, [usernameValid, passwordValid, emailValid, username, password, email, router]);
+
+  const handlerChangeUsername = useCallback(
+    (e) => {
+      setUsername(e.target.value);
+      console.log(usernameValid);
+    },
+    [usernameValid, setUsername]
+  );
+
+  const handlerChangePassword = useCallback(
+    (e) => {
+      setPassword(e.target.value);
+      console.log(passwordValid);
+    },
+    [passwordValid, setPassword]
+  );
+
+  const handlerChangeEmail = useCallback(
+    (e) => {
+      setEmail(e.target.value);
+      console.log(emailValid);
+    },
+    [emailValid, setEmail]
+  );
 
   return (
     <Container>
@@ -50,15 +81,15 @@ const Signup = () => {
         <p className='text-xl'>Sign Up</p>
         <div className='flex flex-col gap-2'>
           <label>Email</label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='email' />
+          <input className='rounded-lg p-2 border border-black border-solid' type='email' onChange={handlerChangeEmail} />
         </div>
         <div className='flex flex-col gap-2'>
           <label>Username</label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='text' />
+          <input className='rounded-lg p-2 border border-black border-solid' type='text' onChange={handlerChangeUsername} />
         </div>
         <div className='flex flex-col gap-2'>
           <label>Password</label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='password' />
+          <input className='rounded-lg p-2 border border-black border-solid' type='password' onChange={handlerChangePassword} />
         </div>
         <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2'>
           <div className='flex gap-2'>

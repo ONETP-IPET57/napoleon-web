@@ -1,19 +1,26 @@
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { userState } from '../atoms/userAtoms';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
+import useSWR from 'swr';
 
-const useUser = () => {
-  const router = useRouter();
-  const [user, setUser] = useRecoilState(userState);
+const fetcher = (url) =>
+  fetch(url)
+    .then((r) => r.json())
+    .then((data) => {
+      if (data.msg) return null;
+      return data || null;
+    });
+
+export default function useUser({ redirectTo, redirectIfFound } = {}) {
+  const { data, error } = useSWR('/api/user', fetcher);
+  const user = data;
+  const hasUser = Boolean(user);
 
   useEffect(() => {
-    if (user && Object.keys(user).length === 0) {
-      router.push('/user/login');
+    if (!redirectTo) return;
+    if ((redirectTo && !redirectIfFound && !hasUser) || (redirectIfFound && hasUser)) {
+      Router.push(redirectTo);
     }
-  }, [user, router]);
+  }, [redirectTo, redirectIfFound, hasUser]);
 
-  return { user, setUser };
-};
-
-export default useUser;
+  return error ? null : user;
+}
