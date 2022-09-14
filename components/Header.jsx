@@ -1,31 +1,33 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import React from 'react';
 import User from './User';
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <div className='flex flex-col px-8'>
-      <div className='flex flex-row gap-8 py-8 justify-start sm:justify-between items-center border-b border-solid border-b-grey-500'>
-        <button>
+      <div className='flex flex-row gap-8 py-8 justify-start sm:justify-center items-center border-b border-solid border-b-grey-500'>
+        <button className='w-auto sm:w-1/6 flex justify-start'>
           <FontAwesomeIcon icon={faBars} />
         </button>
         <Link href={'/'}>
-          <h1 className='font-bebas text-5xl'>NAPOLEÓN</h1>
+          <h1 className='font-bebas text-5xl flex-1 text-center'>NAPOLEÓN</h1>
         </Link>
-        <User />
+        <div className='w-auto sm:w-1/6'>
+          <User />
+        </div>
       </div>
       <div className='flex flex-row py-4 px-8 gap-4 justify-center items-center border-b border-solid border-b-grey-500'>
-        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} className='uppercase'>
+        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.05 }} className='uppercase' onClick={() => router.push('/guides_tours')}>
           Visitas
         </motion.button>
-        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} className='uppercase'>
-          Exploracion
-        </motion.button>
-        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} className='uppercase'>
-          Programacion
+        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.05 }} className='uppercase' onClick={() => router.push('/exhibitions')}>
+          Exhibiciones
         </motion.button>
       </div>
     </div>

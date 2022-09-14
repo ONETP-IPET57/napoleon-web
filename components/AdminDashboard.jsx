@@ -1,4 +1,4 @@
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ const AdminDashboard = () => {
       {exhibitions &&
         exhibitions.map((item) => {
           return (
-            <div id={`exhibition-${item.id_exhibition}`} key={item.id} className='relative rounded-lg overflow-hidden h-30-screen'>
+            <div id={`exhibition-${item.id_exhibition}`} key={item.id} className='relative rounded-lg overflow-hidden h-30-screen border border-solid border-white'>
               <div className='relative h-full'>
                 <Image className='object-cover' src={item.image} alt={`exhibition-image-${item.id_exhibition}`} layout='fill' />
               </div>
@@ -36,6 +36,12 @@ const AdminDashboard = () => {
             </div>
           );
         })}
+      <div className='relative rounded-lg overflow-hidden h-10-screen p-4 gap-4 flex justify-start items-center border border-solid border-white'>
+        <button className='rounded-md border border-solid border-white py-2 px-4' onClick={() => router.push(`/exhibition/add`)}>
+          <FontAwesomeIcon icon={faAdd} />
+        </button>
+        <p>Add a new exhibition</p>
+      </div>
     </div>
   );
 };

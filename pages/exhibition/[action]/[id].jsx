@@ -20,6 +20,19 @@ const Id = () => {
   const informationValid = useValidation(information, /^.{4,255}$/);
 
   useEffect(() => {
+    if (action === 'delete') {
+      fetch('/api/exhibition/' + id, {
+        method: 'DELETE',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          router.push('/user');
+        });
+    }
+  }, [action, id, router]);
+
+  useEffect(() => {
     if (exhibition) console.log(exhibition, new Date(exhibition?.created_at).toLocaleDateString());
   }, [exhibition]);
 

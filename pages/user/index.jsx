@@ -13,8 +13,8 @@ const Index = () => {
   return (
     <Container>
       {user && (
-        <div className='relative [height:60vh] w-screen overflow-hidden flex justify-center items-center'>
-          <Image className='object-cover sm:aspect-cine w-full [height:80vh] sm:h-auto' src={'/img/cyberpunkcity-01.jpg'} alt='cyberpunk city art' layout='fill' />
+        <div className='relative h-30-screen w-screen overflow-hidden flex justify-center items-center border-y border-y-white border-y-solid'>
+          <Image className='object-cover sm:aspect-cine w-full sm:h-auto' src={'/img/cyberpunkcity-01.jpg'} alt='cyberpunk city art' layout='fill' />
           <div className='absolute inset-0 flex flex-col justify-start items-start bg-opacity-40 bg-black p-8 gap-8'>
             <p className='text-4xl uppercase font-bebas'>{user.username}</p>
             <p className='text-xl capitalize'>{user.role}</p>
