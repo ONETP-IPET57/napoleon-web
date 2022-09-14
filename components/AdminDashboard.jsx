@@ -16,9 +16,11 @@ const AdminDashboard = () => {
         exhibitions.map((item) => {
           return (
             <div id={`exhibition-${item.id_exhibition}`} key={item.id} className='relative rounded-lg overflow-hidden h-30-screen border border-solid border-white'>
-              <div className='relative h-full'>
-                <Image className='object-cover' src={item.image} alt={`exhibition-image-${item.id_exhibition}`} layout='fill' />
-              </div>
+              {item.image && (item.image.includes('.jpg') || item.image.includes('base64')) && (
+                <div className='relative h-full'>
+                  <Image className='object-cover' src={item.image} alt={`exhibition-image-${item.id_exhibition}`} layout='fill' />
+                </div>
+              )}
               <div className='absolute inset-0 flex flex-col justify-between items-start gap-4 p-4 bg-black bg-opacity-30'>
                 <p className='font-bebas text-3xl'>{item.name_exhibition}</p>
                 <p>{item.author}</p>

@@ -46,10 +46,21 @@ const Id = () => {
   const handlerChangeName = (e) => setName(e.target.value);
   const handlerChangeAuthor = (e) => setAuthor(e.target.value);
   const handlerChangeInformation = (e) => setInformation(e.target.value);
-  const handlerChangeImage = (e) => setImage(e.target.value);
+  const handlerChangeImage = async (e) => {
+    const toBase64 = (file) =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+
+    toBase64(e.target.files[0]).then((item) => {
+      setImage(item);
+    });
+  };
   const handlerChangeCreatedAt = (e) => {
     setCreatedAt(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -84,7 +95,7 @@ const Id = () => {
           <label id='label-image-url' htmlFor='image-url'>
             Image URL
           </label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='text' id='image-url' name='image-url' placeholder={'Image URL'} onChange={handlerChangeImage} />
+          <input className='rounded-lg p-2 border border-black border-solid' type='file' id='image-url' name='image-url' placeholder={'Image URL'} onChange={handlerChangeImage} />
         </div>
         <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={handlerSubmit}>
           <p>Añadir</p>

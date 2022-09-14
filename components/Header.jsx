@@ -23,7 +23,7 @@ const Header = () => {
         </div>
       </div>
       <div className='flex flex-row py-4 px-8 gap-4 justify-center items-center border-b border-solid border-b-grey-500'>
-        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.05 }} className='uppercase' onClick={() => router.push('/guides_tours')}>
+        <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.05 }} className='uppercase' onClick={() => router.push('/guided_tours')}>
           Visitas
         </motion.button>
         <motion.button initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.05 }} className='uppercase' onClick={() => router.push('/exhibitions')}>
