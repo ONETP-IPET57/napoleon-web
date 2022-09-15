@@ -77,44 +77,45 @@ const Signup = () => {
 
   return (
     <Container>
-      <div className='mx-8 sm:mx-auto p-8 sm:w-2/6 flex flex-col gap-4 bg-black text-white rounded-3xl border border-white border-solid'>
+      <div className='mx-8 sm:mx-auto p-8 sm:w-2/6 flex flex-col gap-4 rounded-3xl border border-black dark:border-white border-solid'>
         <p className='text-xl'>Sign Up</p>
         <div className='flex flex-col gap-2'>
           <label>Email</label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='email' onChange={handlerChangeEmail} />
+          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='email' onChange={handlerChangeEmail} />
         </div>
         <div className='flex flex-col gap-2'>
           <label>Username</label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='text' onChange={handlerChangeUsername} />
+          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' onChange={handlerChangeUsername} />
         </div>
         <div className='flex flex-col gap-2'>
           <label>Password</label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='password' onChange={handlerChangePassword} />
-        </div>
-        <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2'>
-          <div className='flex gap-2'>
-            <input type='checkbox' name='remember' id='remember' />
-            <label>Recordarme?</label>
-          </div>
-          <Link className='text-green-200' href={'/'}>
-            <p>Olvidaste tu contraseña?</p>
-          </Link>
+          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='password' onChange={handlerChangePassword} />
         </div>
         {warning}
         <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={handlerSubmit}>
           <p>Registrarse</p>
         </button>
         <div className='flex justify-center items-center gap-4'>
-          <div className='border border-white border-solid flex-1 h-0' />
+          <div className='border border-black dark:border-white border-solid flex-1 h-0' />
           <p className=''>O continua con:</p>
-          <div className='border border-white border-solid flex-1 h-0' />
+          <div className='border border-black dark:border-white border-solid flex-1 h-0' />
         </div>
         <div className='flex justify-center items-center gap-4'>
-          <button className='flex-1 border border-white border-solid p-2 rounded-lg'>
+          <button className='flex-1 border border-black dark:border-white border-solid p-2 rounded-lg'>
             <FontAwesomeIcon icon={faGoogle} />
           </button>
-          <button className='flex-1 border border-white border-solid p-2 rounded-lg'>
+          <button className='flex-1 border border-black dark:border-white border-solid p-2 rounded-lg'>
             <FontAwesomeIcon icon={faFacebook} />
+          </button>
+        </div>
+        <div className='flex justify-center items-center gap-4'>
+          <div className='border border-black dark:border-white border-solid flex-1 h-0' />
+          <p className=''>Ya tienes cuenta?</p>
+          <div className='border border-black dark:border-white border-solid flex-1 h-0' />
+        </div>
+        <div className='flex justify-center items-center gap-4'>
+          <button className='flex flex-1 items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={() => router.push('/user/login')}>
+            <p>Logearse</p>
           </button>
         </div>
       </div>

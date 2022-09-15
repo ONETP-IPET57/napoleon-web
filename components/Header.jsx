@@ -12,9 +12,7 @@ const Header = () => {
   return (
     <div className='flex flex-col px-8'>
       <div className='flex flex-row gap-8 py-8 justify-start sm:justify-center items-center border-b border-solid border-b-grey-500'>
-        <button className='w-auto sm:w-1/6 flex justify-start'>
-          <FontAwesomeIcon icon={faBars} />
-        </button>
+        <div className='w-auto sm:w-1/6 flex justify-start'></div>
         <Link href={'/'}>
           <h1 className='font-bebas text-5xl flex-1 text-center'>NAPOLEÓN</h1>
         </Link>

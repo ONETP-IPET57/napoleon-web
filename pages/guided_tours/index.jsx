@@ -11,17 +11,19 @@ const GuidesTours = () => {
   return (
     <Container>
       <div className='flex flex-col gap-8'>
-        <div className='border-y border-y-white border-solid flex flex-col gap-4 py-8 px-16 h-50-screen sm:h-30-screen'>
-          <p className='font-bebas text-3xl sm:text-4xl'>Lorem ipsum dolor sit amet.</p>
-          <p className='text-md sm:text-lg'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta ab voluptatum velit, quod laborum corrupti iusto. Distinctio dolores eligendi magnam iste facere quisquam, esse saepe sunt maxime.</p>
+        <div className='border-y border-y-black dark:border-y-white border-solid flex flex-col gap-4 py-8 px-16 h-50-screen sm:h-30-screen'>
+          <p className='font-bebas text-3xl sm:text-4xl'>Visitas</p>
+          <p className='text-md sm:text-lg'>
+            Su presencia nos conforta, siempre hay una buena razon para visitar nuestro museo y recorrer la historia con las grandes obras con las que contamos aparte de pasar un buen dia en familia y ampliar sus conocimientos de arte.<br></br>Haz un recorrido por el museo NAPOLEON y descubre todo lo que tenemos para ti
+          </p>
           <div></div>
         </div>
       </div>
       <div className='flex flex-col gap-8 mt-8'>
         {guidedTours &&
           guidedTours.map((item) => (
-            <div key={item.id_guided_tours} className='relative mx-8 border-y border-y-white border-solid p-8 sm:h-40-screen h-50-screen flex flex-col justify-between items-start'>
-              <Image className='object-cover w-full -z-10' src={'/img/cyberpunkcity-01.jpg'} alt='cyberpunk city art' layout='fill' />
+            <div key={item.id_guided_tours} className='relative mx-8 border-y border-y-black dark:border-y-white border-solid p-8 sm:h-40-screen h-50-screen flex flex-col justify-between items-start'>
+              <Image className='object-cover w-full -z-10' src={'/img/El_estanque.jpg'} alt={item.name_guided_tours} layout='fill' />
               <div className='flex flex-col justify-start items-start gap-4 z-20'>
                 <p className='font-bebas text-3xl sm:text-4xl'>{item.name_guided_tours}</p>
                 <p className='text-md sm:text-lg'>{item.description}</p>

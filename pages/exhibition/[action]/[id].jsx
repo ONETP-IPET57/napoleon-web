@@ -67,25 +67,25 @@ const Id = () => {
   return (
     <Container>
       {exhibition && (
-        <div className='mx-8 p-8 flex flex-col gap-6 bg-black text-white rounded-3xl border border-white border-solid'>
+        <div className='mx-8 p-8 flex flex-col gap-6 rounded-3xl border border-black dark:border-white border-solid'>
           <p className='text-xl'>Editar</p>
           <div className='flex flex-col gap-2'>
             <label id='label-name_exhibition' htmlFor='name_exhibition'>
               Name
             </label>
-            <input className='rounded-lg p-2 border border-black border-solid' type='text' id='name_exhibition' name='name_exhibition' defaultValue={exhibition.name_exhibition} placeholder={exhibition.name_exhibition} onChange={handlerChangeName} />
+            <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' id='name_exhibition' name='name_exhibition' defaultValue={exhibition.name_exhibition} placeholder={exhibition.name_exhibition} onChange={handlerChangeName} />
           </div>
           <div className='flex flex-col gap-2'>
             <label id='label-author' htmlFor='author'>
               Author
             </label>
-            <input className='rounded-lg p-2 border border-black border-solid' type='text' id='author' name='author' defaultValue={exhibition.author} placeholder={exhibition.author} onChange={handlerChangeAuthor} />
+            <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' id='author' name='author' defaultValue={exhibition.author} placeholder={exhibition.author} onChange={handlerChangeAuthor} />
           </div>
           <div className='flex flex-col gap-2'>
             <label id='label-information' htmlFor='information'>
               Information
             </label>
-            <textarea className='rounded-lg p-2 border border-black border-solid' id='information' name='information' defaultValue={exhibition.information} placeholder={exhibition.information} onChange={handlerChangeInformation} />
+            <textarea className='rounded-lg p-2 border border-black dark:border-white border-solid' id='information' name='information' defaultValue={exhibition.information} placeholder={exhibition.information} onChange={handlerChangeInformation} />
           </div>
           <div className='flex flex-col gap-2'>
             <label id='label-created_at' htmlFor='created_at'>

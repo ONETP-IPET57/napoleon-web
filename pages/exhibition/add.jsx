@@ -12,7 +12,6 @@ const Id = () => {
   const [name, setName] = useState(null);
   const [author, setAuthor] = useState(null);
   const [information, setInformation] = useState(null);
-  const [image, setImage] = useState(null);
   const [createdAt, setCreatedAt] = useState(null);
 
   const nameValid = useValidation(name, /^.{4,255}$/);
@@ -33,7 +32,7 @@ const Id = () => {
         'author': author,
         'information': information,
         'created_at': createdAt,
-        'image': image,
+        'image': '',
       }),
     })
       .then((res) => res.json())
@@ -41,11 +40,12 @@ const Id = () => {
         console.log(data);
         router.push('/user');
       });
-  }, [author, authorValid, createdAt, image, information, informationValid, name, nameValid, router]);
+  }, [author, authorValid, createdAt, information, informationValid, name, nameValid, router]);
 
   const handlerChangeName = (e) => setName(e.target.value);
   const handlerChangeAuthor = (e) => setAuthor(e.target.value);
   const handlerChangeInformation = (e) => setInformation(e.target.value);
+  /*
   const handlerChangeImage = async (e) => {
     const toBase64 = (file) =>
       new Promise((resolve, reject) => {
@@ -59,43 +59,38 @@ const Id = () => {
       setImage(item);
     });
   };
+  */
   const handlerChangeCreatedAt = (e) => {
     setCreatedAt(e.target.value);
   };
 
   return (
     <Container>
-      <div className='mx-8 p-8 flex flex-col gap-6 bg-black text-white rounded-3xl border border-white border-solid'>
+      <div className='mx-8 p-8 flex flex-col gap-6 rounded-3xl border border-y-black dark:border-y-white border-solid'>
         <p className='text-xl'>Añadir</p>
         <div className='flex flex-col gap-2'>
           <label id='label-name_exhibition' htmlFor='name_exhibition'>
             Name
           </label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='text' id='name_exhibition' name='name_exhibition' placeholder={'Name exhibition'} onChange={handlerChangeName} />
+          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' id='name_exhibition' name='name_exhibition' placeholder={'Name exhibition'} onChange={handlerChangeName} />
         </div>
         <div className='flex flex-col gap-2'>
           <label id='label-author' htmlFor='author'>
             Author
           </label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='text' id='author' name='author' placeholder={'Author name'} onChange={handlerChangeAuthor} />
+          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' id='author' name='author' placeholder={'Author name'} onChange={handlerChangeAuthor} />
         </div>
         <div className='flex flex-col gap-2'>
           <label id='label-information' htmlFor='information'>
             Information
           </label>
-          <textarea className='rounded-lg p-2 border border-black border-solid' id='information' name='information' placeholder={'Information'} onChange={handlerChangeInformation} />
+          <textarea className='rounded-lg p-2 border border-black dark:border-white border-solid' id='information' name='information' placeholder={'Information'} onChange={handlerChangeInformation} />
         </div>
         <div className='flex flex-col gap-2'>
           <label id='label-created_at' htmlFor='created_at'>
             Created At
           </label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='date' id='created_at' name='created_at' defaultValue={new Date(Date.now()).toISOString().split('T')[0]} onChange={handlerChangeCreatedAt} />
-        </div>
-        <div className='flex flex-col gap-2'>
-          <label id='label-image-url' htmlFor='image-url'>
-            Image URL
-          </label>
-          <input className='rounded-lg p-2 border border-black border-solid' type='file' id='image-url' name='image-url' placeholder={'Image URL'} onChange={handlerChangeImage} />
+          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='date' id='created_at' name='created_at' defaultValue={new Date(Date.now()).toISOString().split('T')[0]} onChange={handlerChangeCreatedAt} />
         </div>
         <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={handlerSubmit}>
           <p>Añadir</p>
