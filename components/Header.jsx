@@ -10,11 +10,11 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div className='flex flex-col px-8'>
-      <div className='flex flex-row gap-8 py-8 justify-start sm:justify-center items-center border-b border-solid border-b-grey-500'>
-        <div className='w-auto sm:w-1/6 flex justify-start'></div>
+    <header className='flex flex-col'>
+      <div className='flex flex-row gap-8 p-8 justify-center items-center border-b border-solid border-b-grey-500'>
+        <div className='w-auto sm:w-1/6 sm:flex justify-start hidden'></div>
         <Link href={'/'}>
-          <h1 className='font-bebas text-5xl flex-1 text-center'>NAPOLEÓN</h1>
+          <h1 className='font-bebas text-5xl flex-1 text-start sm:text-center'>NAPOLEÓN</h1>
         </Link>
         <div className='w-auto sm:w-1/6'>
           <User />
@@ -28,7 +28,7 @@ const Header = () => {
           Exhibiciones
         </motion.button>
       </div>
-    </div>
+    </header>
   );
 };
 
