@@ -35,29 +35,36 @@ const Login = () => {
         'password': password,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data && data.message) {
+      .then((res) => {
+        if (res.ok) {
+          const data = res.json();
+          if (data && data.message) {
+            setWarning(
+              <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
+                <p>{data.message}</p>
+              </div>
+            );
+          } else if (data && data.msg) {
+            setWarning(
+              <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
+                <p>{data.msg}</p>
+              </div>
+            );
+          } else {
+            router.push('/user');
+          }
+        } else if (res.status === 500) {
           setWarning(
             <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-              <p>{data.message}</p>
+              <p>Ha habido un error: {res.status}</p>
             </div>
           );
         }
-        if (data && data.msg) {
-          setWarning(
-            <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-              <p>{data.msg}</p>
-            </div>
-          );
-        }
-        router.push('/user');
       })
       .catch((err) => {
         setWarning(
           <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-            <p>{err}</p>
+            <p>Ha habido un error</p>
           </div>
         );
       });

@@ -47,15 +47,15 @@ const Signup = () => {
               <p>{data.message}</p>
             </div>
           );
-        }
-        if (data && data.msg) {
+        } else if (data && data.msg) {
           setWarning(
             <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
               <p>{data.msg}</p>
             </div>
           );
+        } else {
+          router.push('/user');
         }
-        router.push('/user');
       })
       .catch((err) => {
         setWarning(
