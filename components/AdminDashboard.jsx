@@ -15,7 +15,7 @@ const AdminDashboard = () => {
       {exhibitions &&
         exhibitions.map((item) => {
           return (
-            <div id={`exhibition-${item.id_exhibition}`} key={item.id} className='relative rounded-lg overflow-hidden h-30-screen border border-solid border-white'>
+            <div id={`exhibition-${item.id_exhibition}`} key={item.id} className='relative rounded-lg overflow-hidden h-80-screen sm:h-40-screen border border-solid border-white'>
               {item.image && (item.image.includes('.jpg') || item.image.includes('base64')) && (
                 <div className='relative h-full'>
                   <Image className='object-cover' src={item.image} alt={`exhibition-image-${item.id_exhibition}`} layout='fill' />
@@ -25,7 +25,7 @@ const AdminDashboard = () => {
                 <p className='font-bebas text-3xl'>{item.name_exhibition}</p>
                 <p>{item.author}</p>
                 <p>{item.created_at}</p>
-                <p className=''>{item.information}</p>
+                <p className='overflow-hidden text-ellipsis'>{item.information}</p>
                 <div className='flex justify-start items-start gap-4'>
                   <button className='rounded-md border border-solid border-white py-2 px-4' onClick={() => router.push(`/exhibition/edit/${item.id_exhibition}`)}>
                     <FontAwesomeIcon icon={faEdit} />

@@ -12,7 +12,7 @@ const GuidesTours = () => {
   return (
     <Container>
       <div className='flex flex-col gap-8'>
-        <div className='border-y border-y-black dark:border-y-white border-solid flex flex-col gap-4 py-8 px-16 h-50-screen sm:h-30-screen'>
+        <div className='border-y border-y-white border-solid flex flex-col gap-4 p-8 h-50-screen sm:h-30-screen'>
           <p className='font-bebas text-3xl sm:text-4xl'>Visitas</p>
           <p className='text-md sm:text-lg'>
             Su presencia nos conforta, siempre hay una buena razon para visitar nuestro museo y recorrer la historia con las grandes obras con las que contamos aparte de pasar un buen dia en familia y ampliar sus conocimientos de arte.<br></br>Haz un recorrido por el museo NAPOLEON y descubre todo lo que tenemos para ti
@@ -23,7 +23,7 @@ const GuidesTours = () => {
       <div className='flex flex-col gap-8 mt-8'>
         {guidedTours &&
           guidedTours.map((item) => (
-            <motion.div initial={{ scale: 1 }} whileHover={{ scale: 1.01 }} whileTap={{ scale: 1.01 }} key={item.id_guided_tours} className='relative mx-8 border-y border-y-black dark:border-y-white border-solid sm:h-40-screen h-50-screen flex flex-col justify-between items-start'>
+            <motion.div initial={{ scale: 1 }} whileHover={{ scale: 1.01 }} whileTap={{ scale: 1.01 }} key={item.id_guided_tours} className='relative border-y border-y-white border-solid sm:h-40-screen h-50-screen flex flex-col justify-between items-start'>
               <Image className='object-cover w-full -z-10' src={'/img/El_estanque.jpg'} alt={item.name_guided_tours} layout='fill' />
               <div className='flex flex-col justify-between items-start h-full w-full p-8 bg-black bg-opacity-40 text-white'>
                 <div className='flex flex-col justify-start items-start gap-4 z-20'>

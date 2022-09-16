@@ -66,31 +66,31 @@ const Id = () => {
 
   return (
     <Container>
-      <div className='mx-8 p-8 flex flex-col gap-6 rounded-3xl border border-y-black dark:border-y-white border-solid'>
+      <div className='mx-8 p-8 flex flex-col gap-6 rounded-3xl border border-y-white border-solid'>
         <p className='text-xl'>Añadir</p>
         <div className='flex flex-col gap-2'>
           <label id='label-name_exhibition' htmlFor='name_exhibition'>
             Name
           </label>
-          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' id='name_exhibition' name='name_exhibition' placeholder={'Name exhibition'} onChange={handlerChangeName} />
+          <input className='rounded-lg p-2 border border-white border-solid' type='text' id='name_exhibition' name='name_exhibition' placeholder={'Name exhibition'} onChange={handlerChangeName} />
         </div>
         <div className='flex flex-col gap-2'>
           <label id='label-author' htmlFor='author'>
             Author
           </label>
-          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='text' id='author' name='author' placeholder={'Author name'} onChange={handlerChangeAuthor} />
+          <input className='rounded-lg p-2 border border-white border-solid' type='text' id='author' name='author' placeholder={'Author name'} onChange={handlerChangeAuthor} />
         </div>
         <div className='flex flex-col gap-2'>
           <label id='label-information' htmlFor='information'>
             Information
           </label>
-          <textarea className='rounded-lg p-2 border border-black dark:border-white border-solid' id='information' name='information' placeholder={'Information'} onChange={handlerChangeInformation} />
+          <textarea className='rounded-lg p-2 border border-white border-solid' id='information' name='information' placeholder={'Information'} onChange={handlerChangeInformation} />
         </div>
         <div className='flex flex-col gap-2'>
           <label id='label-created_at' htmlFor='created_at'>
             Created At
           </label>
-          <input className='rounded-lg p-2 border border-black dark:border-white border-solid' type='date' id='created_at' name='created_at' defaultValue={new Date(Date.now()).toISOString().split('T')[0]} onChange={handlerChangeCreatedAt} />
+          <input className='rounded-lg p-2 border border-white border-solid' type='number' id='created_at' name='created_at' defaultValue={new Date(Date.now()).getFullYear()} onChange={handlerChangeCreatedAt} />
         </div>
         <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={handlerSubmit}>
           <p>Añadir</p>

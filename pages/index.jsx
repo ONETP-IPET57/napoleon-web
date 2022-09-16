@@ -33,13 +33,13 @@ const Index = () => {
   return (
     <Container>
       <div className='flex flex-col gap-8'>
-        <div className='border-y border-y-black dark:border-y-white border-solid h-30-screen flex flex-col justify-center items-start p-8 font-bebas text-xl sm:text-4xl'>
+        <div className='border-y border-y-white border-solid h-30-screen flex flex-col justify-center items-start p-8 font-bebas text-xl sm:text-4xl'>
           <p>BIENVENIDOS A NAPOLEON </p>
           <p>RECORRE LA HISTORIA ATRAVES DE NOSOTROS</p>
         </div>
-        <div className='relative overflow-hidden flex flex-col gap-8 py-8 border-y border-y-black dark:border-y-white border-solid'>
+        <div className='relative overflow-hidden flex flex-col gap-8 py-8 border-y border-y-white border-solid'>
           <p className='w-full px-8 text-md sm:text-lg'>Exhibiciones destacadas:</p>
-          <motion.div className={`flex flex-row flex-wrap relative overflow-hidden border-y border-y-black dark:border-y-white border-solid`} style={{ width: 100 * fixedExhibitions.length + 'vw' }} initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
+          <motion.div className={`flex flex-row flex-wrap relative overflow-hidden border-y border-y-white border-solid`} style={{ width: 100 * fixedExhibitions.length + 'vw' }} initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
             {fixedExhibitions &&
               fixedExhibitions.length !== 0 &&
               fixedExhibitions.map((item) => {
@@ -62,10 +62,10 @@ const Index = () => {
             </button>
           </div>
         </div>
-        <div className='border-y border-y-black dark:border-y-white border-solid flex flex-col gap-8 py-8'>
+        <div className='border-y border-y-white border-solid flex flex-col gap-8 py-8'>
           <p className='w-full px-8 text-md sm:text-lg'>Conoce nuestras instalaciones:</p>
-          <div className='relative h-50-screen border-y border-y-black dark:border-y-white border-solid'>
-            <Image className='dark:invert object-cover' src={'/img/napoleon-plano.jpeg'} alt='plano' layout='fill' />
+          <div className='relative h-50-screen border-y border-y-white border-solid'>
+            <Image className='invert object-contain md:object-cover ' src={'/img/napoleon-plano.jpeg'} alt='plano' layout='fill' />
           </div>
         </div>
       </div>

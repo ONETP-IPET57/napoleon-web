@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const useValidation = (str, expression) => {
-  const [isValid, setIsValid] = useState(false);
+const useValidation = (str, expression, defaultValue = false) => {
+  const [isValid, setIsValid] = useState(defaultValue);
 
   useEffect(() => {
     console.log('expression: ', expression, 'str: ', str);
