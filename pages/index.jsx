@@ -20,20 +20,22 @@ const Index = () => {
   }, [carrouselCounter]);
 
   useEffect(() => {
-    if (!exhibitions && exhibitions.length === 0) return;
-    let fix = [];
-    for (let i = 0; i < 3; i++) {
-      const item = exhibitions[i];
-      fix.push(item);
+    if (exhibitions && exhibitions.length !== 0) {
+      let fix = [];
+      for (let i = 0; i < 3; i++) {
+        const item = exhibitions[i];
+        fix.push(item);
+      }
+      setFixedExhibitions(fix);
     }
-    setFixedExhibitions(fix);
   }, [exhibitions]);
 
   return (
     <Container>
-      <div className='relative w-screen overflow-hidden flex'>
+      <div className='relative overflow-hidden flex'>
         <motion.div className='flex flex-row' initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
           {fixedExhibitions &&
+            fixedExhibitions.length !== 0 &&
             fixedExhibitions.map((item) => {
               return (
                 <div className='relative [height:60vh] w-screen overflow-hidden flex justify-center items-center' key={item.id_exhibition}>
