@@ -22,7 +22,7 @@ const Login = () => {
   const passwordValid = useValidation(password, /^.{4,12}$/);
 
   const handlerSubmit = useCallback(() => {
-    if (!usernameValid && !passwordValid) return;
+    if (!usernameValid || !passwordValid) return;
 
     fetch('/api/login', {
       method: 'POST',

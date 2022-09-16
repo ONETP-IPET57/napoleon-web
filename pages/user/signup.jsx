@@ -24,7 +24,7 @@ const Signup = () => {
   const emailValid = useValidation(email, /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/);
 
   const handlerSubmit = useCallback(() => {
-    if (!usernameValid && !passwordValid && !emailValid) return;
+    if (!usernameValid || !passwordValid || !emailValid) return;
 
     fetch('/api/signup', {
       method: 'POST',
