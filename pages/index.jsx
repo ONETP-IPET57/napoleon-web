@@ -12,11 +12,19 @@ const Index = () => {
   const [fixedExhibitions, setFixedExhibitions] = useState([]);
 
   const handlerLeftCarrousel = useCallback(() => {
-    if (carrouselCounter != 0) setCarrouselCounter(carrouselCounter - 1);
+    if (carrouselCounter != 0) {
+      setCarrouselCounter(carrouselCounter - 1);
+    } else {
+      setCarrouselCounter(2);
+    }
   }, [carrouselCounter]);
 
   const handlerRightCarrousel = useCallback(() => {
-    if (carrouselCounter != 2) setCarrouselCounter(carrouselCounter + 1);
+    if (carrouselCounter != 2) {
+      setCarrouselCounter(carrouselCounter + 1);
+    } else {
+      setCarrouselCounter(0);
+    }
   }, [carrouselCounter]);
 
   useEffect(() => {
@@ -45,7 +53,7 @@ const Index = () => {
               fixedExhibitions.map((item) => {
                 return (
                   <div className='relative h-60-screen w-screen overflow-hidden flex-1 flex justify-center items-center' key={item.id_exhibition}>
-                    <Image className='object-cover sm:aspect-cine w-full h-80-screen sm:h-auto' src={item.image} alt='cyberpunk city art' layout='fill' />
+                    <Image className='object-cover sm:aspect-cine w-full h-80-screen sm:h-auto' src={item.image} alt={item.name_exhibition} layout='fill' />
                     <div className='w-full h-full flex justify-start items-end bg-opacity-40 bg-black z-20'>
                       <p className='m-8 text-lg uppercase'>{item.name_exhibition}</p>
                     </div>

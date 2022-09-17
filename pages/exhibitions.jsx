@@ -38,7 +38,7 @@ const Exhibitions = () => {
           exhibitions.map((item) => {
             return (
               <motion.div initial={{ scale: 1 }} whileHover={{ scale: 1.01 }} whileTap={{ scale: 1.01 }} key={item.id_exhibition + item.name_exhibition} className='relative border-y border-y-white border-solid sm:h-40-screen h-80-screen flex flex-col justify-between items-start'>
-                <Image className='object-cover w-full -z-10' src={item.image} alt='cyberpunk city art' layout='fill' />
+                <Image className='object-cover w-full -z-10' src={item.image} alt={item.name_exhibition} layout='fill' />
                 <motion.div className='flex flex-col justify-start items-start gap-4 z-20 relative w-full h-full p-8 bg-black bg-opacity-40 text-white' initial='initial' whileInView='enterView' whileHover='hover' whileTap='hover' whileDrag='hover' variants={variants} viewport={{ amount: 0.5 }}>
                   <p className='font-bebas text-3xl sm:text-4xl'>{item.name_exhibition}</p>
                   <p className='text-md sm:text-xl'>{item.author}</p>

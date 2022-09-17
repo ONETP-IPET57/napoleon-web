@@ -9,10 +9,11 @@ import Container from '../../layouts/Container';
 const Id = () => {
   const router = useRouter();
 
-  const [name, setName] = useState(null);
-  const [author, setAuthor] = useState(null);
-  const [information, setInformation] = useState(null);
-  const [createdAt, setCreatedAt] = useState(null);
+  const [name, setName] = useState('New Exhibition');
+  const [author, setAuthor] = useState('Author');
+  const [information, setInformation] = useState('Information');
+  const [createdAt, setCreatedAt] = useState(2022);
+  const [beepcon, setBeepcon] = useState(23);
 
   const nameValid = useValidation(name, /^.{4,255}$/);
   const authorValid = useValidation(author, /^.{4,255}$/);
@@ -33,6 +34,7 @@ const Id = () => {
         'information': information,
         'created_at': createdAt,
         'image': '',
+        'beepcons': beepcon,
       }),
     })
       .then((res) => res.json())
@@ -40,7 +42,7 @@ const Id = () => {
         console.log(data);
         router.push('/user');
       });
-  }, [author, authorValid, createdAt, information, informationValid, name, nameValid, router]);
+  }, [author, authorValid, createdAt, information, informationValid, name, nameValid, router, beepcon]);
 
   const handlerChangeName = (e) => setName(e.target.value);
   const handlerChangeAuthor = (e) => setAuthor(e.target.value);
@@ -62,6 +64,9 @@ const Id = () => {
   */
   const handlerChangeCreatedAt = (e) => {
     setCreatedAt(e.target.value);
+  };
+  const handlerChangeBeepcon = (e) => {
+    setBeepcon(e.target.value);
   };
 
   return (
@@ -91,6 +96,12 @@ const Id = () => {
             Created At
           </label>
           <input className='rounded-lg p-2 border border-white border-solid' type='number' id='created_at' name='created_at' defaultValue={new Date(Date.now()).getFullYear()} onChange={handlerChangeCreatedAt} />
+        </div>
+        <div className='flex flex-col gap-2'>
+          <label id='label-beepcon-location' htmlFor='beepcon-location'>
+            Beepcon Location
+          </label>
+          <input className='rounded-lg p-2 border border-black border-solid' type='number' id='beepcon-location' name='beepcon-location' defaultValue={23} onChange={handlerChangeBeepcon} />
         </div>
         <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={handlerSubmit}>
           <p>Añadir</p>

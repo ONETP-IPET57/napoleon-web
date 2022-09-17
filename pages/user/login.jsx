@@ -36,29 +36,30 @@ const Login = () => {
       }),
     })
       .then((res) => {
-        if (res.ok) {
-          const data = res.json();
-          if (data && data.message) {
-            setWarning(
-              <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-                <p>{data.message}</p>
-              </div>
-            );
-          } else if (data && data.msg) {
-            setWarning(
-              <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-                <p>{data.msg}</p>
-              </div>
-            );
-          } else {
-            router.push('/user');
-          }
-        } else if (res.status === 500) {
+        if (res.status === 500) {
           setWarning(
             <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
               <p>Ha habido un error: {res.status}</p>
             </div>
           );
+        } else {
+          res.json().then((data) => {
+            if (data && data.message) {
+              setWarning(
+                <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
+                  <p>{data.message}</p>
+                </div>
+              );
+            } else if (data && data.msg) {
+              setWarning(
+                <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
+                  <p>{data.msg}</p>
+                </div>
+              );
+            } else {
+              router.push('/user');
+            }
+          });
         }
       })
       .catch((err) => {

@@ -15,6 +15,7 @@ const Id = () => {
   const [author, setAuthor] = useState('');
   const [information, setInformation] = useState('');
   const [createdAt, setCreatedAt] = useState(0);
+  const [beepcon, setBeepcon] = useState(0);
 
   const nameValid = useValidation(name, /^.{4,255}$/, true);
   const authorValid = useValidation(author, /^.{4,255}$/, true);
@@ -26,6 +27,7 @@ const Id = () => {
       setAuthor(exhibition.author);
       setInformation(exhibition.information);
       setCreatedAt(exhibition.created_at);
+      setBeepcon(exhibition.beepcons);
     }
   }, [exhibition]);
 
@@ -57,6 +59,7 @@ const Id = () => {
         'information': information || exhibition.information,
         'created_at': createdAt || exhibition.created_at,
         'image': exhibition.image,
+        'beepcons': beepcon || exhibition.beepcons,
       }),
     })
       .then((res) => res.json())
@@ -64,13 +67,16 @@ const Id = () => {
         console.log(data);
         router.push('/user');
       });
-  }, [author, authorValid, exhibition, id, information, informationValid, name, nameValid, router, createdAt]);
+  }, [author, authorValid, exhibition, id, information, informationValid, name, nameValid, router, createdAt, beepcon]);
 
   const handlerChangeName = (e) => setName(e.target.value);
   const handlerChangeAuthor = (e) => setAuthor(e.target.value);
   const handlerChangeInformation = (e) => setInformation(e.target.value);
   const handlerChangeCreatedAt = (e) => {
     setCreatedAt(e.target.value);
+  };
+  const handlerChangeBeepcon = (e) => {
+    setBeepcon(e.target.value);
   };
 
   return (
@@ -101,6 +107,12 @@ const Id = () => {
               Created At
             </label>
             <input className='rounded-lg p-2 border border-black border-solid' type='number' id='created_at' name='created_at' defaultValue={exhibition.created_at} onChange={handlerChangeCreatedAt} />
+          </div>
+          <div className='flex flex-col gap-2'>
+            <label id='label-beepcon-location' htmlFor='beepcon-location'>
+              Beepcon Location
+            </label>
+            <input className='rounded-lg p-2 border border-black border-solid' type='number' id='beepcon-location' name='beepcon-location' defaultValue={exhibition.beepcons} onChange={handlerChangeBeepcon} />
           </div>
           <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={handlerSubmit}>
             <p>Enviar</p>
