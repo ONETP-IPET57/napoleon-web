@@ -16,7 +16,7 @@ const AdminDashboard = () => {
   const [beepconLocation, setBeepconLocation] = useState('');
 
   useEffect(() => {
-    socket = io('http://socket.napoleon.tikkix2.com.ar');
+    socket = io('https://socket.napoleon.tikkix2.com.ar');
     console.log(socket);
 
     socket.on('newIncomingAlert', (msg) => {
