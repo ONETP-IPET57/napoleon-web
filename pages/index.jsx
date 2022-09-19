@@ -5,11 +5,17 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowLeftLong, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import useExhibitions from '../hooks/useExhibitions';
+import { useSpeechSynthesis } from 'react-speech-kit';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Index = () => {
+const Index = ({ locale }) => {
   const [carrouselCounter, setCarrouselCounter] = useState(0);
   const exhibitions = useExhibitions();
   const [fixedExhibitions, setFixedExhibitions] = useState([]);
+  const { speak, voices } = useSpeechSynthesis();
+
+  const { t } = useTranslation('home');
 
   const handlerLeftCarrousel = useCallback(() => {
     if (carrouselCounter != 0) {
@@ -38,15 +44,26 @@ const Index = () => {
     }
   }, [exhibitions]);
 
+  const handlerSpeech = (text) =>
+    speak({
+      text,
+      voice: voices.find((item) => {
+        return item.lang.includes(locale);
+      }),
+    });
+
   return (
     <Container>
       <div className='flex flex-col gap-8'>
-        <div className='border-y border-y-white border-solid h-30-screen flex flex-col justify-center items-start p-8 font-bebas text-xl sm:text-4xl'>
-          <p>BIENVENIDOS A NAPOLEON </p>
-          <p>RECORRE LA HISTORIA ATRAVES DE NOSOTROS</p>
+        <div className='border-y border-y-white border-solid h-30-screen flex flex-col justify-center items-start p-8 font-bebas text-xl sm:text-4xl' onClick={() => handlerSpeech(t('home-text'))}>
+          {t('home-text')
+            .split('.')
+            .map((item, index) => {
+              return <p key={index}>{item}</p>;
+            })}
         </div>
         <div className='relative overflow-hidden flex flex-col gap-8 py-8 border-y border-y-white border-solid'>
-          <p className='w-full px-8 text-md sm:text-lg'>Exhibiciones destacadas:</p>
+          <p className='w-full px-8 text-md sm:text-lg'>{t('featured-exhibitions')}</p>
           <motion.div className={`flex flex-row flex-wrap relative overflow-hidden border-y border-y-white border-solid`} style={{ width: 100 * fixedExhibitions.length + 'vw' }} initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
             {fixedExhibitions &&
               fixedExhibitions.length !== 0 &&
@@ -71,7 +88,7 @@ const Index = () => {
           </div>
         </div>
         <div className='border-y border-y-white border-solid flex flex-col gap-8 py-8'>
-          <p className='w-full px-8 text-md sm:text-lg'>Conoce nuestras instalaciones:</p>
+          <p className='w-full px-8 text-md sm:text-lg'>{t('facilities')}</p>
           <div className='relative h-50-screen border-y border-y-white border-solid'>
             <Image className='invert object-contain md:object-cover ' src={'/img/napoleon-plano.jpeg'} alt='plano' layout='fill' />
           </div>
@@ -79,6 +96,18 @@ const Index = () => {
       </div>
     </Container>
   );
+};
+
+// export const getServerSideProps = async ({ locale }) => ({
+export const getStaticProps = async (context) => {
+  const { locale, defaultLocale } = context;
+  console.log(context, locale, defaultLocale);
+  return {
+    props: {
+      locale,
+      ...(await serverSideTranslations(locale || defaultLocale, ['home'])),
+    },
+  };
 };
 
 export default Index;
