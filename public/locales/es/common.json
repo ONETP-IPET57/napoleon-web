@@ -1,5 +1,9 @@
 {
   "home-text": "Bienvenidos a NAPOLEON. Recorre la historia a través de nosotros.",
   "featured-exhibitions": "Exhibiciones destacadas:",
-  "facilities": "Conoce nuestras instalaciones:"
+  "facilities": "Conoce nuestras instalaciones:",
+  "header": {
+    "title": "NAPOLEÓN",
+    "login": "Inicia Sesion"
+  }
 }

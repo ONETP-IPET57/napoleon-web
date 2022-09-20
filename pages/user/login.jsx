@@ -9,10 +9,15 @@ import { accessTokenState, userState } from '../../atoms/userAtoms';
 import useUser from '../../hooks/useUser';
 import useValidation from '../../hooks/useValidation';
 import { faCheckCircle, faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import useSpeak from '../../hooks/useSpeak';
 
 const Login = () => {
   const router = useRouter();
   useUser({ redirectTo: '/user', redirectIfFound: true });
+  const { t } = useTranslation('user');
+  const createAttr = useSpeak();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -38,21 +43,23 @@ const Login = () => {
       .then((res) => {
         if (res.status === 500) {
           setWarning(
-            <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-              <p>Ha habido un error: {res.status}</p>
+            <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700' {...createAttr(t('error') + res.status)}>
+              <p>
+                {t('error')} {res.status}
+              </p>
             </div>
           );
         } else {
           res.json().then((data) => {
             if (data && data.message) {
               setWarning(
-                <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
+                <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700' onMouseEnter={() => speak(data.message)} onMouseLeave={cancel}>
                   <p>{data.message}</p>
                 </div>
               );
             } else if (data && data.msg) {
               setWarning(
-                <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
+                <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700' {...createAttr(data.msg)}>
                   <p>{data.msg}</p>
                 </div>
               );
@@ -64,12 +71,12 @@ const Login = () => {
       })
       .catch((err) => {
         setWarning(
-          <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700'>
-            <p>Ha habido un error</p>
+          <div className='flex justify-center items-center border border-red-500 border-solid rounded-lg p-2 bg-red-700' {...createAttr(t('error'))}>
+            <p>{t('error')}</p>
           </div>
         );
       });
-  }, [usernameValid, passwordValid, username, password, router]);
+  }, [usernameValid, passwordValid, username, password, router, createAttr, t]);
 
   const handlerChangeUsername = useCallback(
     (e) => {
@@ -90,20 +97,22 @@ const Login = () => {
   return (
     <Container>
       <div className='border-y border-y-white border-solid'>
-        <div className='mx-8 sm:mx-auto p-8 sm:w-2/6 flex flex-col gap-6'>
-          <p className='text-xl'>Login</p>
-          <div className='flex flex-col gap-2'>
+        <div className='mx-8 sm:mx-auto p-8 sm:w-3/6 lg:w-2/6 flex flex-col gap-6'>
+          <p className='text-xl' {...createAttr(t('login'))}>
+            {t('login')}
+          </p>
+          <div className='flex flex-col gap-2' {...createAttr(t('username'))}>
             <label id='label-username' htmlFor='username'>
-              Username
+              {t('username')}
             </label>
             <div className='flex gap-4 pr-4 items-center'>
               <input className={'rounded-lg p-2 border border-white border-solid flex-1'} style={{ outline: usernameValid ? '#22c55e solid 2px' : 'rgb(239 68 68) solid 2px' }} type='text' id='username' name='username' onChange={handlerChangeUsername} />
               <FontAwesomeIcon style={{ color: usernameValid ? '#22c55e' : 'rgb(239 68 68)' }} icon={usernameValid ? faCheckCircle : faXmarkCircle} />
             </div>
           </div>
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2' {...createAttr(t('password'))}>
             <label id='label-password' htmlFor='password'>
-              Password
+              {t('password')}
             </label>
             <div className='flex gap-4 pr-4 items-center'>
               <input className='rounded-lg p-2 border border-white border-solid flex-1' style={{ outline: passwordValid ? '#22c55e solid 2px' : 'rgb(239 68 68) solid 2px' }} type='password' id='password' name='password' onChange={handlerChangePassword} />
@@ -111,8 +120,8 @@ const Login = () => {
             </div>
           </div>
           {warning}
-          <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black ' onClick={handlerSubmit}>
-            <p>Ingresar</p>
+          <button className='flex items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black ' onClick={handlerSubmit} {...createAttr(t('login_button'))}>
+            <p>{t('login_button')}</p>
           </button>
           {/*
 
@@ -131,20 +140,31 @@ const Login = () => {
         </div>
 
         */}
-          <div className='flex justify-center items-center gap-4'>
+          <div className='flex justify-center items-center gap-4' {...createAttr(t('dont_account'))}>
             <div className='border border-white border-solid flex-1 h-0' />
-            <p className=''>No tienes cuenta?</p>
+            <p className=''>{t('dont_account')}</p>
             <div className='border border-white border-solid flex-1 h-0' />
           </div>
-          <div className='flex justify-center items-center gap-4'>
+          <div className='flex justify-center items-center gap-4' {...createAttr(t('signup_button'))}>
             <button className='flex flex-1 items-center justify-center p-2 rounded-lg bg-green-200 hover:bg-green-300 focus:outline-none active:bg-green-400 text-black' onClick={() => router.push('/user/signup')}>
-              <p>Registrarse</p>
+              <p>{t('signup_button')}</p>
             </button>
           </div>
         </div>
       </div>
     </Container>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const { locale, defaultLocale } = context;
+  console.log(context, locale, defaultLocale);
+  return {
+    props: {
+      locale,
+      ...(await serverSideTranslations(locale || defaultLocale, ['user', 'container'])),
+    },
+  };
 };
 
 export default Login;

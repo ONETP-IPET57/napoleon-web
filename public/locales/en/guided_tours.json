@@ -1,0 +1,8 @@
+{
+  "guided_tours_title": "Guided tours",
+  "guided_tours_text": "Your presence comforts us, there is always a good reason to visit our museum and go through history with the great works that we have in addition to spend a good day with your family and expand their knowledge of art. Take a tour of the NAPOLEON museum and discover all that we have for you.",
+  "item": "Guided tour name: {{name}}. Description: {{description}}. Day: {{day}}. Start hour: {{hour_start}}. End hour: {{hour_end}}",
+  "guided_tours_to": "See guided tour",
+  "reserve": "Reserve guided tour",
+  "login_reserve": "Login for reserve"
+}

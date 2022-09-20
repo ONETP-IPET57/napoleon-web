@@ -1,0 +1,28 @@
+{
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+  "login": "Log In",
+  "signup": "Sign Up",
+  "dont_account": "¿Don't have a account?",
+  "have_account": "¿Have a account?",
+  "login_button": "Log In",
+  "signup_button": "Sign In",
+  "error": "An error has occurred",
+  "logout": "Log out",
+  "visits": {
+    "title": "Guided tours pending",
+    "reference_name": "Your reference name is: {{reference}}"
+  },
+  "beepcons_simulation": {
+    "title": "Smart Point Event Simulator",
+    "select": "Select a exhibition",
+    "button": "Send a alert to the app",
+    "current_location": "Current location: {{beepcon}}"
+  },
+  "controls": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add a new Exhibition"
+  }
+}

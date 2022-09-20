@@ -1,0 +1,8 @@
+{
+  "guided_tours_title": "Visitas",
+  "guided_tours_text": "Su presencia nos conforta, siempre hay una buena razon para visitar nuestro museo y recorrer la historia con las grandes obras con las que contamos aparte de pasar un buen dia en familia y ampliar sus conocimientos de arte. Haz un recorrido por el museo NAPOLEON y descubre todo lo que tenemos para ti",
+  "item": "Nombre de la visita guiada: {{name}}. Descripcion: {{description}}. Dia: {{day}}. Hora de inicio: {{hour_start}}. Hora de finalizado: {{hour_end}}",
+  "guided_tours_to": "Ver visita",
+  "reserve": "Reservar visita",
+  "login_reserve": "Inicia sesion para reservar"
+}

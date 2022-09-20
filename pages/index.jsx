@@ -8,12 +8,13 @@ import useExhibitions from '../hooks/useExhibitions';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import useSpeak from '../hooks/useSpeak';
 
 const Index = ({ locale }) => {
   const [carrouselCounter, setCarrouselCounter] = useState(0);
   const exhibitions = useExhibitions();
   const [fixedExhibitions, setFixedExhibitions] = useState([]);
-  const { speak, voices } = useSpeechSynthesis();
+  const createAttr = useSpeak();
 
   const { t } = useTranslation('home');
 
@@ -44,32 +45,26 @@ const Index = ({ locale }) => {
     }
   }, [exhibitions]);
 
-  const handlerSpeech = (text) =>
-    speak({
-      text,
-      voice: voices.find((item) => {
-        return item.lang.includes(locale);
-      }),
-    });
-
   return (
     <Container>
       <div className='flex flex-col gap-8'>
-        <div className='border-y border-y-white border-solid h-30-screen flex flex-col justify-center items-start p-8 font-bebas text-xl sm:text-4xl' onClick={() => handlerSpeech(t('home-text'))}>
+        <div className='border-y border-y-white border-solid h-30-screen flex flex-col justify-center items-start p-8 font-bebas text-xl sm:text-4xl' {...createAttr(t('home-text'))}>
           {t('home-text')
             .split('.')
             .map((item, index) => {
-              return <p key={index}>{item}</p>;
+              return item !== '' ? <p key={index}>{item}</p> : null;
             })}
         </div>
         <div className='relative overflow-hidden flex flex-col gap-8 py-8 border-y border-y-white border-solid'>
-          <p className='w-full px-8 text-md sm:text-lg'>{t('featured-exhibitions')}</p>
+          <p className='w-full px-8 text-md sm:text-lg' {...createAttr(t('featured-exhibitions'))}>
+            {t('featured-exhibitions')}
+          </p>
           <motion.div className={`flex flex-row flex-wrap relative overflow-hidden border-y border-y-white border-solid`} style={{ width: 100 * fixedExhibitions.length + 'vw' }} initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
             {fixedExhibitions &&
               fixedExhibitions.length !== 0 &&
               fixedExhibitions.map((item) => {
                 return (
-                  <div className='relative h-60-screen w-screen overflow-hidden flex-1 flex justify-center items-center' key={item.id_exhibition}>
+                  <div className='relative h-60-screen w-screen overflow-hidden flex-1 flex justify-center items-center' key={item.id_exhibition} {...createAttr(item.name_exhibition)}>
                     <Image className='object-cover sm:aspect-cine w-full h-80-screen sm:h-auto' src={item.image} alt={item.name_exhibition} layout='fill' />
                     <div className='w-full h-full flex justify-start items-end bg-opacity-40 bg-black z-20'>
                       <p className='m-8 text-lg uppercase'>{item.name_exhibition}</p>
@@ -88,7 +83,9 @@ const Index = ({ locale }) => {
           </div>
         </div>
         <div className='border-y border-y-white border-solid flex flex-col gap-8 py-8'>
-          <p className='w-full px-8 text-md sm:text-lg'>{t('facilities')}</p>
+          <p className='w-full px-8 text-md sm:text-lg' {...createAttr(t('facilities'))}>
+            {t('facilities')}
+          </p>
           <div className='relative h-50-screen border-y border-y-white border-solid'>
             <Image className='invert object-contain md:object-cover ' src={'/img/napoleon-plano.jpeg'} alt='plano' layout='fill' />
           </div>
@@ -105,7 +102,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       locale,
-      ...(await serverSideTranslations(locale || defaultLocale, ['home'])),
+      ...(await serverSideTranslations(locale || defaultLocale, ['home', 'container'])),
     },
   };
 };

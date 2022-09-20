@@ -1,0 +1,15 @@
+{
+  "title": "Exhibiciones",
+  "description": "Regresa a la historia e ingresa a conocer nuestras exhibiciones",
+  "item": "Nombre de la obra: {{name_exhibition}}. Autor: {{author}}. informacion: {{information}}",
+  "post": {
+    "name": "Nombre de la exhibicion",
+    "author": "Autor",
+    "information": "Informacion",
+    "created_at": "Creado en",
+    "beepcon_location": "Ubicacion del Beepcon",
+    "send": "Enviar",
+    "edit": "Editar",
+    "add": "Añadir"
+  }
+}

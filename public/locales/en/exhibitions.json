@@ -1,0 +1,15 @@
+{
+  "title": "Exhibitions",
+  "description": "Go back in history and enter to see our exhibits",
+  "item": "Name exhibition: {{name_exhibition}}. Author: {{author}}. Information: {{information}}",
+  "post": {
+    "name": "Name exhibition",
+    "author": "Author",
+    "information": "Information",
+    "created_at": "Created at",
+    "beepcon_location": "Beepcon Location",
+    "send": "Send",
+    "edit": "Edit",
+    "add": "Add"
+  }
+}

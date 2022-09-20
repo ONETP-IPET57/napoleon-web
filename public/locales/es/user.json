@@ -1,0 +1,28 @@
+{
+  "email": "Correo electronico",
+  "username": "Nombre de usuario",
+  "password": "Contraseña",
+  "login": "Inicia sesion",
+  "signup": "Registrate",
+  "dont_account": "¿No tienes cuenta?",
+  "have_account": "¿Ya tienes cuenta?",
+  "login_button": "Ingresar",
+  "signup_button": "Registrarse",
+  "error": "Ha surgido un error",
+  "logout": "Cerrar sesion",
+  "visits": {
+    "title": "Visitas pendientes",
+    "reference_name": "Su nombre de referencia es: {{reference}}"
+  },
+  "beepcons_simulation": {
+    "title": "Simulacion de eventos de Puntos Inteligentes",
+    "select": "Seleccione una exhibicion",
+    "button": "Enviar alerta hacia la Aplicacion",
+    "current_location": "Ubicacion actual: {{beepcon}}"
+  },
+  "controls": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "add": "Añadir una nueva exhibicion"
+  }
+}
