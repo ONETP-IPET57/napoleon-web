@@ -2,5 +2,15 @@
   "header": {
     "title": "NAPOLEÓN",
     "login": "Log In"
+  },
+  "menu": {
+    "guided_tours": "Guided Tours",
+    "exhibitions": "Exhibitions",
+    "change_language": "Change Language",
+    "back": "Back",
+    "open": "Open menu"
+  },
+  "footer": {
+    "follow_us": "¡Follow us!"
   }
 }

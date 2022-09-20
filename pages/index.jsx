@@ -59,7 +59,7 @@ const Index = ({ locale }) => {
           <p className='w-full px-8 text-md sm:text-lg' {...createAttr(t('featured-exhibitions'))}>
             {t('featured-exhibitions')}
           </p>
-          <motion.div className={`flex flex-row flex-wrap relative overflow-hidden border-y border-y-white border-solid`} style={{ width: 100 * fixedExhibitions.length + 'vw' }} initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0.2 }}>
+          <motion.div className={`flex flex-row flex-wrap relative overflow-hidden border-y border-y-white border-solid`} style={{ width: 100 * fixedExhibitions.length + 'vw' }} initial={{ x: 0 }} animate={{ x: -100 * carrouselCounter + 'vw' }} transition={{ duration: 0.5, type: 'spring', bounce: 0 }}>
             {fixedExhibitions &&
               fixedExhibitions.length !== 0 &&
               fixedExhibitions.map((item) => {
@@ -87,7 +87,7 @@ const Index = ({ locale }) => {
             {t('facilities')}
           </p>
           <div className='relative h-50-screen border-y border-y-white border-solid'>
-            <Image className='invert object-contain md:object-cover ' src={'/img/napoleon-plano.jpeg'} alt='plano' layout='fill' />
+            <Image className='invert object-contain lg:object-cover ' src={'/img/napoleon-plano.jpeg'} alt='plano' layout='fill' />
           </div>
         </div>
       </div>
