@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Container from '../../layouts/Container';
-import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { useRecoilState } from 'recoil';
-import { accessTokenState, userState } from '../../atoms/userAtoms';
 import useUser from '../../hooks/useUser';
 import useValidation from '../../hooks/useValidation';
 import { faCheckCircle, faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
@@ -81,17 +77,15 @@ const Login = () => {
   const handlerChangeUsername = useCallback(
     (e) => {
       setUsername(e.target.value);
-      console.log(usernameValid);
     },
-    [usernameValid, setUsername]
+    [setUsername]
   );
 
   const handlerChangePassword = useCallback(
     (e) => {
       setPassword(e.target.value);
-      console.log(passwordValid);
     },
-    [passwordValid, setPassword]
+    [setPassword]
   );
 
   return (

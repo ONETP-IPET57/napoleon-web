@@ -9,7 +9,7 @@ const fetcher = (url) =>
     });
 
 /**
- * @returns {Array<Object> | null}
+ * @returns {Object | null}
  */
 export default function useGuidedTour(id) {
   const { data, error } = useSWR('/api/guided_tours/' + id, fetcher);
