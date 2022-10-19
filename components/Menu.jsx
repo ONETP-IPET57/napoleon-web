@@ -2,6 +2,8 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { speakerState } from '../atoms/userAtoms';
 import use3DEffect from '../hooks/use3DEffect';
 import useSpeak from '../hooks/useSpeak';
 
@@ -9,6 +11,7 @@ const Menu = ({ visibility, toggleMenuVisibility }) => {
   const router = useRouter();
   const { t } = useTranslation('container');
   const createAttr = useSpeak();
+  const [speaker, setSpeaker] = useRecoilState(speakerState);
 
   const attr = use3DEffect();
 
@@ -47,6 +50,9 @@ const Menu = ({ visibility, toggleMenuVisibility }) => {
       </motion.button>
       <motion.button variants={menuChildrensVariants} onClick={() => onClickItem(changeLanguage)} {...createAttr(t('menu.change_language'))}>
         <motion.p {...attr}>{t('menu.change_language')}</motion.p>
+      </motion.button>
+      <motion.button variants={menuChildrensVariants} onClick={() => setSpeaker(!speaker)} {...createAttr(speaker ? t('menu.speaker.disable') : t('menu.speaker.enable'))}>
+        <motion.p {...attr}>{speaker ? t('menu.speaker.disable') : t('menu.speaker.enable')}</motion.p>
       </motion.button>
       <motion.button variants={menuChildrensVariants} onClick={toggleMenuVisibility} {...createAttr(t('menu.back'))}>
         <motion.p {...attr}>{t('menu.back')}</motion.p>

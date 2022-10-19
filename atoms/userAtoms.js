@@ -14,3 +14,8 @@ export const accessTokenState = atom({
   key: 'accessTokenAtom',
   default: '',
 });
+
+export const speakerState = atom({
+  key: 'speakerState',
+  default: true,
+});

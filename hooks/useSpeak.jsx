@@ -1,11 +1,14 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import { useRecoilValue } from 'recoil';
+import { speakerState } from '../atoms/userAtoms';
 
 export default function useSpeak() {
   const router = useRouter();
   const locale = router.locale;
   const { speak, voices, cancel } = useSpeechSynthesis();
+  const speaker = useRecoilValue(speakerState);
 
   const handlerSpeech = useCallback(
     (text) =>
@@ -22,11 +25,13 @@ export default function useSpeak() {
     (text) => {
       return {
         'onMouseEnter': () => {
+          if (!speaker) return;
           cancel();
           handlerSpeech(text);
         },
         'onMouseLeave': cancel,
         'onTouchStart': () => {
+          if (!speaker) return;
           cancel();
           handlerSpeech(text);
         },

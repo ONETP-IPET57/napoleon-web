@@ -8,7 +8,11 @@
     "exhibitions": "Exhibiciones",
     "change_language": "Cambiar lenguaje",
     "back": "Volver",
-    "open": "Abrir menu"
+    "open": "Abrir menu",
+    "speaker": {
+      "enable": "Habilitar narrador",
+      "disable": "Desabilitar narrador"
+    }
   },
   "footer": {
     "follow_us": "¡Siguenos!"
