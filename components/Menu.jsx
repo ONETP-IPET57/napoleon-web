@@ -34,7 +34,7 @@ const Menu = ({ visibility, toggleMenuVisibility }) => {
   };
 
   const changeLanguage = () => {
-    router.push('/', null, { locale: router.locale === 'es' ? 'en' : 'es' });
+    router.push(router.basePath, null, { locale: router.locale === 'es' ? 'en' : 'es' });
   };
 
   return (
