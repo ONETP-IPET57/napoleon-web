@@ -55,10 +55,10 @@ const Index = () => {
                 visits.map((item) => {
                   return (
                     <div key={item.id_visit} className='relative rounded-lg overflow-hidden h-10-screen p-8 gap-4 flex justify-between items-center border border-solid border-white'>
-                      <div className='flex gap-4' {...createAttr(t('reference_name', { reference: item.reference_name }))}>
+                      <div className='flex gap-4' {...createAttr(t('visits.reference_name', { reference: item.reference_name }))}>
                         <p className='text-2xl uppercase font-bebas'>{item.name_guided_tours}</p>
                         {' - '}
-                        <p className='text-lg'>{t('reference_name', { reference: item.reference_name })}</p>
+                        <p className='text-lg'>{t('visits.reference_name', { reference: item.reference_name })}</p>
                       </div>
                       <button className='rounded-md border border-solid border-white py-2 px-4' onClick={() => router.push(`/visits/delete/${item.id_visit}`)} {...createAttr(t('controls.delete'))}>
                         <FontAwesomeIcon icon={faTrash} />
